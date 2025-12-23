@@ -1,0 +1,211 @@
+/* Сброс стилей */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+/* Контейнер "игры" - фиксированный размер 16:9 */
+#game-container {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    background-color: #000;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Слой фона */
+#background-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+    /* Затемнение фона, чтобы текст читался лучше */
+    filter: brightness(0.7); 
+}
+
+/* Слой персонажа */
+#character-layer {
+    position: absolute;
+    bottom: 0;
+    left: 50px; /* Положение персонажа */
+    height: 90%; /* Высота персонажа относительно экрана */
+    z-index: 1;
+    pointer-events: none;
+}
+
+#character-img {
+    height: 100%;
+    object-fit: contain;
+    transition: opacity 0.3s;
+}
+
+.hidden {
+    opacity: 0;
+    display: none !important;
+}
+
+/* Слой интерфейса */
+#ui-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none; /* Чтобы клики проходили сквозь пустые места */
+}
+
+/* Верхняя панель управления */
+#controls-top {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    left: 20px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: auto;
+}
+
+#slide-counter {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 1px solid #4a4a4a;
+}
+
+.control-btn {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: 1px solid #4a4a4a;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.control-btn:hover {
+    background: rgba(233, 30, 99, 0.8);
+}
+
+/* Текстовый блок внизу */
+.textbox-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid #4a4a4a;
+    border-radius: 10px;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    pointer-events: auto; /* Возвращаем клики текстовому блоку */
+}
+
+#name-tag {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background: #e91e63; /* Цвет плашки имени */
+    color: white;
+    padding: 5px 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 5px 5px 0 0;
+    min-width: 150px;
+    text-align: center;
+}
+
+#dialogue-text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    flex-grow: 1;
+}
+
+.click-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 0.9rem;
+    color: #888;
+    animation: blink 2s infinite;
+}
+
+/* Контейнер выбора */
+#choices-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+/* Кнопки выбора */
+.choice-btn {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.choice-btn:hover {
+    background-color: #c2185b;
+    transform: scale(1.05);
+}
+
+.choice-btn:active {
+    transform: scale(0.95);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 768px) {
+    #game-container {
+        width: 100%;
+        height: 100vh;
+    }
+    #character-layer {
+        left: -50px;
+    }
+    #dialogue-text {
+        font-size: 1rem;
+    }
+    #choices-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    #controls-top {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+    }
+}
