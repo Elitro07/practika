@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчет о практике</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="game-container">
+        <!-- Слой фона -->
+        <div id="background-layer"></div>
+
+        <!-- Слой персонажа -->
+        <div id="character-layer">
+            <img id="character-img" src="" alt="Character" class="hidden">
+        </div>
+
+        <!-- Слой предметов/скриншотов (справа) -->
+        <div id="prop-layer">
+            <img id="prop-img" src="" alt="Prop" class="hidden">
+        </div>
+
+        <!-- Интерфейс -->
+        <div id="ui-layer">
+            
+            <!-- Верхняя панель -->
+            <div id="controls-top">
+                <button id="btn-back" class="control-btn" title="Назад">← Назад</button>
+                <div id="slide-counter">-- / --</div>
+            </div>
+
+            <div class="textbox-container">
+                <div id="name-tag">Даня</div>
+                <p id="dialogue-text">Загрузка...</p>
+                <div class="click-hint">Нажми, чтобы продолжить ▼</div>
+                
+                <!-- Контейнер для кнопок выбора -->
+                <div id="choices-container" class="hidden"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
